@@ -1,0 +1,14 @@
+{
+  "name": "com.memocall.project-start-tool",
+  "displayName": "Project Start Tool",
+  "version": "0.0.1",
+  "unity": "2022.3",
+  "description": "Helper package to ease the process of starting a new project.",
+  "license": "MIT",
+  "author": {
+    "name": "Mehmet \u00c7al\u0131ko\u011flu",
+    "email": "memocaldev@gmail.com",
+    "url": "https://memocaldev.com/"
+  },
+  "type": "tool"
+}
