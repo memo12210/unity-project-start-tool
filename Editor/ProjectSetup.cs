@@ -18,7 +18,7 @@ namespace Editor
         {
             Assets.ImportAsset("Odin Inspector 3.3.1.7.unitypackage", "Sirenix/Editor ExtensionSystem");
             Assets.ImportAsset("Graphy - Ultimate FPS Counter - Stats Monitor Debugger.unitypackage", "Tayx/ScriptingGUI");
-            Assets.ImportAsset("Feel.unitypackage", "Editor ExtensionsEffects/Editor ExtensionsEffects");
+            Assets.ImportAsset("Feel.unitypackage", "More Mountains/Editor ExtensionsEffects");
             Assets.ImportAsset("vFolders.unitypackage", "kubacho lab/Editor ExtensionsUtilities");
             Assets.ImportAsset("vHierarchy.unitypackage", "kubacho lab/Editor ExtensionsUtilities");
             Assets.ImportAsset("vRuler.unitypackage", "kubacho lab/Editor ExtensionsUtilities");
