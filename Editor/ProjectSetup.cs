@@ -22,7 +22,6 @@ namespace Editor
             Assets.ImportAsset("vFolders.unitypackage", "kubacho lab/Editor ExtensionsUtilities");
             Assets.ImportAsset("vHierarchy.unitypackage", "kubacho lab/Editor ExtensionsUtilities");
             Assets.ImportAsset("vRuler.unitypackage", "kubacho lab/Editor ExtensionsUtilities");
-            
         }
 
         [MenuItem("Tools/Project Setup/Install Essential Packages")]
@@ -31,8 +30,9 @@ namespace Editor
             Packages.InstallPackages(new[] 
             {
                 "git+https://github.com/gustavopsantos/reflex.git?path=/Assets/Reflex/#8.5.2",
+                "git+https://github.com/GlitchEnzo/NuGetForUnity.git?path=/src/NuGetForUnity",
                 "com.unity.postprocessing",
-                "com.unity.inputsystem"
+                "com.unity.inputsystem" // add new input system to last since it requires a restart
             });
         }
 
@@ -109,10 +109,11 @@ namespace Editor
                         break;
                 }
 
-                if (_packagesToInstall.Count <= 0) return;
-                
-                await Task.Delay(1000);
-                StartNextPackageInstallation();
+                if (_packagesToInstall.Count > 0)
+                {
+                    await Task.Delay(1000);
+                    StartNextPackageInstallation();
+                }
             }
         }
 
