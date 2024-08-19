@@ -80,46 +80,46 @@ namespace Editor
             private static AddRequest _request;
             private static Queue<string> _packagesToInstall = new Queue<string>();
 
-            public static void InstallPackages(string[] packages)
+            public static async void InstallPackages(string[] packages)
             {
-                foreach(var package in packages)
+                foreach (var package in packages)
                 {
                     _packagesToInstall.Enqueue(package);
-                }
-                
-                if(_packagesToInstall.Count > 0)
-                {
-                    StartNextPackageInstallation();
-                }
-            }
-
-            private static async void StartNextPackageInstallation()
-            {
-                _request = Client.Add(_packagesToInstall.Dequeue());
-
-                while(!_request.IsCompleted)
-                {
-                    await Task.Delay(10);
-                }
-
-                switch (_request.Status)
-                {
-                    case StatusCode.Success:
-                        Debug.Log($"Package {_request.Result.packageId} installed successfully.");
-                        break;
-                    case >= StatusCode.Failure:
-                        Debug.LogError(_request.Error.message);
-                        break;
                 }
 
                 if (_packagesToInstall.Count > 0)
                 {
+                    await StartNextPackageInstallation();
+                }
+            }
+
+            private static async Task StartNextPackageInstallation()
+            {
+                while (_packagesToInstall.Count > 0)
+                {
+                    _request = Client.Add(_packagesToInstall.Dequeue());
+
+                    while (!_request.IsCompleted)
+                    {
+                        await Task.Delay(10);
+                    }
+
+                    switch (_request.Status)
+                    {
+                        case StatusCode.Success:
+                            Debug.Log($"Package {_request.Result.packageId} installed successfully.");
+                            break;
+                        case >= StatusCode.Failure:
+                            Debug.LogError(_request.Error.message);
+                            break;
+                    }
+
+                    // Wait a moment before starting the next package installation.
                     await Task.Delay(1000);
-                    StartNextPackageInstallation();
                 }
             }
         }
-
+        
         private static class Folders
         {
             public static void Create(string root, params string[] folders)
