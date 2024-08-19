@@ -11,6 +11,9 @@ using static UnityEditor.AssetDatabase;
 
 namespace Editor
 {
+    /// <summary>
+    /// Helper class to ease the Project Setup process.
+    /// </summary>
     public static class ProjectSetup
     {
         [MenuItem("Tools/Project Setup/Import Essential Assets")]
